@@ -1,3 +1,36 @@
+// Optimized solution
+class Solution
+{
+public:
+    int maxArea(vector<int> &height)
+    {
+        int max = 0;
+        int left = 0;
+
+        // Right is second last one;
+        int right = height.size() - 1;
+
+        // Keep going till left is less than right
+        while (left < right)
+        {
+            int currentArea = min(height[left], height[right]) * (right - left);
+            max = std::max(max, currentArea);
+
+            if (height[left] < height[right])
+            {
+                left++;
+            }
+            else
+            {
+                right--;
+            }
+        }
+
+        return max;
+    }
+};
+
+// Solution doesn't pass time complexity
 class Solution
 {
 public:
