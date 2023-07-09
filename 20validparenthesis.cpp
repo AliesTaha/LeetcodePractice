@@ -31,6 +31,6 @@ public:
         }
 
         // True if stack is empty, false otherwise
-        return st.empty();
+        resturn st.empty();
     }
 };
