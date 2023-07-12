@@ -25,3 +25,37 @@ public:
         return maxProfit;
     }
 };
+
+bool isPalindrome(string s)
+{
+    // Your code implementation goes here
+    for (char &c : s)
+    {
+        c = toLower(c);
+    }
+
+    int left = 0;
+    int right = s.length() - 1;
+
+    for (int i = 0; i = s.length(); i++)
+    {
+        if (!(isalnum(s[left])))
+        {
+            left++;
+            continue;
+        }
+        if (!(isalnum(s[right])))
+        {
+            right--;
+            continue;
+        }
+        if (s[left] != s[right])
+        {
+            return false;
+        }
+
+        left--;
+        right++;
+    }
+    return true;
+}
