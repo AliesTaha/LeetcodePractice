@@ -7,7 +7,6 @@ An input string is valid if:
 Open brackets must be closed by the same type of brackets.
 Open brackets must be closed in the correct order.
 Every close bracket has a corresponding open bracket of the same type.
- 
 
 Example 1:
 
@@ -20,7 +19,15 @@ Output: true
 Example 3:
 
 Input: s = "(]"
-Output: false*/
+Output: false
+
+class Solution {
+public:
+    bool isValid(string s) {
+
+    }
+};
+*/
 class Solution
 {
 public:
@@ -54,6 +61,6 @@ public:
         }
 
         // True if stack is empty, false otherwise
-        resturn st.empty();
+        return st.empty();
     }
 };

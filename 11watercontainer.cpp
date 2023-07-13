@@ -36,21 +36,21 @@ class Solution
 public:
     int maxArea(vector<int> &height)
     {
-        for (int i = 0; i < height.size()-1; i++)
+        for (int i = 0; i < height.size() - 1; i++)
         {
             int present = height[i];
             int max = 0;
-            int area =0;
+            int area = 0;
 
-            for (int j = i+1; j < height.size()-1; j++)
+            for (int j = i + 1; j < height.size() - 1; j++)
             {
-                int next=height[j];
-                int length= j-i;
-                int area= (present<next) ? present* length : next*length;
-                if (max<area){
-                    max=area;
+                int next = height[j];
+                int length = j - i;
+                int area = (present < next) ? present * length : next * length;
+                if (max < area)
+                {
+                    max = area;
                 }
-
             }
         }
         return max;
