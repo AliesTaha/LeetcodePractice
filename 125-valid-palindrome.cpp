@@ -28,49 +28,66 @@ class Solution
 public:
     bool isPalindrome(string s)
     {
-        string word;
-
-        for (int i = 0; i < s.length(); i++)
+        for (auto &c : s)
         {
-            if (std::isalpha(s[i]))
-            {
-                word[i] = s[i];
-            }
+            c = tolower(c);
         }
-        int length = word.length();
-        for (auto x : s)
+
+        int left = 0;
+        int right = s.length() - 1;
+
+        while (left < right)
         {
-            length--;
-            if (word[length] != x)
+            if (!isalnum(s[left]))
             {
-                return fales;
+                left++;
+                continue;
             }
+            if (!isalnum(s[right]))
+            {
+                right--;
+                continue;
+            }
+            if (s[left] != s[right])
+            {
+                return false;
+            }
+            left++;
+            right--;
         }
         return true;
     }
-}
-
-class Solution
+} class Solution
 {
 public:
     bool isPalindrome(string s)
     {
-        string word;
+        for (char &c : s)
+        {
+            c = tolower(c);
+        }
+
+        int left = 0;
+        int right = s.length() - 1;
+
         for (int i = 0; i < s.length(); i++)
         {
-            if (std::isalpha(s[i]))
+            if (!isalnum(s[left]))
             {
-                word[i] = s[i];
+                left++;
+                continue;
             }
-        }
-        int length = word.length();
-        for (auto x : s)
-        {
-            length--;
-            if (x != word[length])
+            if (!isalnum(s[right]))
+            {
+                right--;
+                continue;
+            }
+            if (s[left] != s[right])
             {
                 return false;
             }
+            left++;
+            right--;
         }
         return true;
     }

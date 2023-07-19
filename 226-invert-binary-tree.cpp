@@ -1,5 +1,35 @@
+class Solution
+{
+public:
+    TreeNode *invertTree(TreeNode *root)
+    {
+        Treenode *head = root;
+
+        if (root == NULL)
+            return NULL;
+        Treenode *temp = root->left;
+        root->left = root->right;
+        root->right = temp;
+
+        invertTree(root->left);
+        invertTree(root->right);
+        return head;
+    }
+}
 /*
 Given the root of a binary tree, invert the tree, and return its root.
+     4
+   /   \
+  2     7
+ / \   / \
+1   3 6   9
+
+to
+     4
+   /   \
+  7     2
+ / \   / \
+9   6 3   1
 
 Example 1:
 
@@ -31,5 +61,19 @@ class Solution
 public:
     TreeNode *invertTree(TreeNode *root)
     {
+        TreeNode *p = root;
+        if (root == NULL)
+        {
+            return NULL;
+        }
+
+        TreeNode *temp = root->left;
+        root->left = root->right;
+        root->right = temp;
+
+        invertTree(root->left);
+        invertTree(root->right);
+
+        return p;
     }
 };
