@@ -29,6 +29,33 @@ public:
     bool isPalindrome(string s)
     {
         string word;
+
+        for (int i = 0; i < s.length(); i++)
+        {
+            if (std::isalpha(s[i]))
+            {
+                word[i] = s[i];
+            }
+        }
+        int length = word.length();
+        for (auto x : s)
+        {
+            length--;
+            if (word[length] != x)
+            {
+                return fales;
+            }
+        }
+        return true;
+    }
+}
+
+class Solution
+{
+public:
+    bool isPalindrome(string s)
+    {
+        string word;
         for (int i = 0; i < s.length(); i++)
         {
             if (std::isalpha(s[i]))
