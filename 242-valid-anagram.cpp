@@ -28,7 +28,7 @@ public:
         }
         for (int i = 0; i < t.length(); i++)
         {
-            char_arr[s[i] - 'a']--;
+            char_arr[t[i] - 'a']--;
         }
         for (int i = 0; i < (sizeof(char_arr) / sizeof(char_arr[0])); i++)
         {
