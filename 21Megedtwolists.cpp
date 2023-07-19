@@ -48,6 +48,36 @@ public:
         ListNode *curr = new ListNode();
         ListNode *head = curr;
 
+        while (ptr1 != nullptr && ptr2 != nullptr)
+        {
+            if (ptr1->val < ptr2->val)
+            {
+                curr->next = ptr1->val;
+                ptr1 = ptr1->next;
+            }
+            else
+            {
+                curr->next = ptr2->val;
+                ptr2 = ptr2->next;
+            }
+            curr = curr->next;
+        }
+        curr->next = ptr1 == nullptr ? ptr2 : ptr1;
+        return head->next;
+    }
+};
+
+class Solution
+{
+public:
+    ListNode *mergeTwoLists(ListNode *list1, ListNode *list2)
+    {
+        ListNode *ptr1 = list1;
+        ListNode *ptr2 = list2;
+
+        ListNode *curr = new ListNode();
+        ListNode *head = curr;
+
         while (ptr1 && ptr2)
         {
             if (ptr1->val < ptr2->val)

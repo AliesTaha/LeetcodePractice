@@ -1,3 +1,30 @@
+class Solution
+{
+public:
+    bool isValid(string s)
+    {
+        unordered_map<char, char> dic = {
+            {'}', '{'},
+            {')', '('},
+            {']', '['}};
+        stack<char> st;
+
+        for (auto x : s)
+        {
+            if (dic.find(x) != dic.end())
+            {
+                if (st.empty() || st.top() == dic(x))
+                    return false;
+                st.pop();
+            }
+            else
+            {
+                st.push(x);
+            }
+        }
+        return st.empty();
+    }
+};
 /*
 20. Valid Parentheses
 Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
