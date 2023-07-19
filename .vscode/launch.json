@@ -3,11 +3,13 @@
   "configurations": [
     {
       "name": "C/C++ Runner: Debug Session",
-      "type": "lldb",
+      "type": "cppvsdbg",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/alies/Desktop/University/Projects/LeetcodePractice",
-      "program": "/Users/alies/Desktop/University/Projects/LeetcodePractice/build/Debug/outDebug"
+      "stopAtEntry": false,
+      "console": "externalTerminal",
+      "cwd": "c:/Users/ataha/personalsides/C-Algorithms/LeetcodePractice",
+      "program": "c:/Users/ataha/personalsides/C-Algorithms/LeetcodePractice/build/Debug/outDebug"
     }
   ]
 }

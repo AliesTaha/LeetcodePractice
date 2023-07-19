@@ -55,6 +55,29 @@ public:
 ////////////////////
 */
 
+class Solution
+{
+public:
+    vector<int> twoSum(vector<int> &nums, int target)
+    {
+        unordered_map<int, int> dic;
+        int goal;
+        for (int i = 0; i < nums.size(); i++)
+        {
+            goal = target - nums[i];
+            if (dic.find(goal) != dic.end())
+            {
+                return {i, dic[goal]};
+            }
+            else
+            {
+                dic[nums[i]] = i;
+            }
+        }
+        retrun{};
+    }
+};
+
 // Solution Hashmaps
 class Solution
 {
