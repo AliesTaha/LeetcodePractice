@@ -3,16 +3,20 @@ class Solution
 public:
     void fill(vector<vector<int>> &image, int sr, int sc, int startColor, int newColor)
     {
-        int thisCol = image[sr][sc];
-        if (sr < 0 || sc < 0 || sr > image.size() - 1 || sc > image[0].size() - 1 || thisCol != startColor)
+        // Check if the current pixel is out of bounds or not matching the startColor
+        if (sr < 0 || sc < 0 || sr >= image.size() || sc >= image[0].size() || image[sr][sc] != startColor)
         {
             return;
         }
+
+        // Update the color of the current pixel
         image[sr][sc] = newColor;
-        fill(image, sr - 1, sc, startColor, newColor);
-        fill(image, sr + 1, sc, startColor, newColor);
-        fill(image, sr, sc - 1, startColor, newColor);
-        fill(image, sr, sc + 1, startColor, newColor);
+
+        // Perform recursive flood fill on neighboring pixels
+        fill(image, sr - 1, sc, startColor, newColor); // Up
+        fill(image, sr + 1, sc, startColor, newColor); // Down
+        fill(image, sr, sc - 1, startColor, newColor); // Left
+        fill(image, sr, sc + 1, startColor, newColor); // Right
     }
 
     vector<vector<int>> floodFill(vector<vector<int>> &image, int sr, int sc, int color)
@@ -20,6 +24,7 @@ public:
         int startColor = image[sr][sc];
         if (startColor == color)
             return image;
+
         fill(image, sr, sc, startColor, color);
         return image;
     }
