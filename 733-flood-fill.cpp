@@ -1,7 +1,7 @@
 class Solution
 {
 public:
-    void fill(vector<vector<int>> image, int sr, int sc, int startColor, int newColor)
+    void fill(vector<vector<int>> &image, int sr, int sc, int startColor, int newColor)
     {
         int thisCol = image[sr][sc];
         if (sr < 0 || sc < 0 || sr > image.size() - 1 || sc > image[0].size() - 1 || thisCol != startColor)
@@ -14,6 +14,7 @@ public:
         fill(image, sr, sc - 1, startColor, newColor);
         fill(image, sr, sc + 1, startColor, newColor);
     }
+
     vector<vector<int>> floodFill(vector<vector<int>> &image, int sr, int sc, int color)
     {
         int startColor = image[sr][sc];
@@ -23,6 +24,7 @@ public:
         return image;
     }
 };
+
 /*
 An image is represented by an m x n integer grid image
 where image[i][j] represents the pixel value of the image.
