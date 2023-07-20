@@ -29,21 +29,21 @@ public:
         for (int i = 0; i < nums.size(); i++)
         {
             // 1
-            int halfway = ((right - left) / 2) + halfway;
+            int halfway = ((right + left) / 2);
             if (target > nums[halfway])
             {
-                left = halfway;
+                left = halfway + 1;
                 // left=2
                 continue;
             }
             else if (target < nums[halfway])
             {
-                right = halfway;
+                right = halfway - 1;
                 continue;
             }
             else if (target == nums[halfway])
             {
-                return i;
+                return halfway;
             }
         }
         return -1;
