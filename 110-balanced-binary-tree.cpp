@@ -1,3 +1,43 @@
+class Solution
+{
+public:
+  int answer = 1;
+  int checker(TreeNode *root)
+  {
+    if (root == NULL)
+    {
+      return 1;
+    }
+    int right, left;
+    if (root->right == NULL)
+    {
+      right = 0;
+    }
+    else
+    {
+      right = checker(root->right);
+    }
+    if (root->left == NULL)
+    {
+      left = 0;
+    }
+    else
+    {
+      left = checker(root->left);
+    }
+    if (abs(right - left) > 1)
+    {
+      answer = 0;
+      return 0;
+    }
+    return ((right > left ? right : left) + 1);
+  }
+  bool isBalanced(TreeNode *root)
+  {
+    checker(root);
+    return answer;
+  }
+};
 /*
 Balanced Binary Tree
 Given a binary tree, determine if it is height-balanced.
@@ -30,6 +70,12 @@ public:
       return true;
     }
 };
+class Solution
+{
+public:
+  bool isBalanced(TreeNode *root){
+    }
+  }
 */
 
 /**
@@ -45,8 +91,40 @@ public:
 class Solution
 {
 public:
-    bool isBalanced(TreeNode *root)
+  int placeholder = 1;
+  int check(TreeNode *root)
+  {
+    if (root == NULL)
     {
-        return true;
+      return 1;
     }
+    int left, right;
+    if (root->right == NULL)
+    {
+      right = 0;
+    }
+    else
+    {
+      right = check(root->right);
+    }
+    if (root->left == NULL)
+    {
+      left = 0;
+    }
+    else
+    {
+      left = check(root->left);
+    }
+    if (abs(right - left) >= 2)
+    {
+      placeholder = 0;
+      return 0;
+    }
+    return ((right > left ? right : left) + 1);
+  }
+  bool isBalanced(TreeNode *root)
+  {
+    check(root);
+    return placeholder;
+  }
 };
