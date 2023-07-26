@@ -1,3 +1,26 @@
+class Solution
+{
+public:
+    bool canConstruct(string ransomNote, string magazine)
+    {
+        vector<int> alphabet(26);
+
+        for (char c : magazine)
+        {
+            alphabet[c - 'a'] += 1;
+        }
+
+        for (char c : ransomNote)
+        {
+            alphabet[c - 'a'] -= 1;
+            if (alphabet[c] < 0)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+};
 /*Given two strings ransomNote and magazine,
 return true if ransomNote can be constructed by
 using the letters from magazine and false otherwise.
