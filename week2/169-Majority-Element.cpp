@@ -1,3 +1,28 @@
+class Solution
+{
+public:
+    int majorityElement(vector<int> &nums)
+    {
+        int ans, max = INT_MIN;
+
+        unordered_map<int, int> dic;
+
+        for (int i = 0; i < nums.size(); i++)
+        {
+            dic[nums[i]] += 1;
+        }
+
+        for (auto it = dic.begin(); it != dic.end(); it++)
+        {
+            if (it->second > max)
+            {
+                max = it->second;
+                ans = it->first;
+            }
+        }
+        return ans;
+    }
+};
 /*
 Given an array nums of size n, return the majority element.
 

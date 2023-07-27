@@ -61,13 +61,9 @@ public:
         {
             ListNode *next = cur->next;
             if (cur == head)
-            {
                 cur->next = NULL;
-            }
             else
-            {
                 cur->next = prev;
-            }
             prev = cur;
             cur = next;
         }
