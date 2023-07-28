@@ -1,4 +1,4 @@
-<h1> Leetcode Problems, solved in C++ <h1>
+<h1> Leetcode Problems, solved in C++ </h1>
 
 <p>Trying to solve Blind 75 to prepare for interviews, as well as practice my problem-solving skills.
 
