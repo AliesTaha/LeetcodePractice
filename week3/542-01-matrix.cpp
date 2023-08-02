@@ -24,43 +24,34 @@ Output: [[0,0,0],[0,1,0],[1,2,1]]
 class Solution
 {
 public:
-    vector<vector<int>> updateMatrix(vector<vector<int>> &mat)
+    vector<vector<int>> updateMatrix(vector<vector<int>> &matrix)
     {
-        int rows = mat.size();
-        int columns = mat[0].size();
-
-        vector<vector<int>> result[rows][columns];
-
-        for (int i = 0; i < rows * columns; i++)
+        int m = matrix.size(), n = matrix[0].size();
+        vector<vector<int>> dirs{{0, -1}, {-1, 0}, {0, 1}, {1, 0}};
+        queue<pair<int, int>> q;
+        for (int i = 0; i < m; ++i)
         {
+            for (int j = 0; j < n; ++j)
+            {
+                if (matrix[i][j] == 0)
+                    q.push({i, j});
+                else
+                    matrix[i][j] = -1;
+            }
         }
-
-        // if top edge
-        else if (i <= rows)
+        while (!q.empty())
         {
-            // if top right corner
-            // if top left corner
+            auto t = q.front();
+            q.pop();
+            for (auto dir : dirs)
+            {
+                int x = t.first + dir[0], y = t.second + dir[1];
+                if (x < 0 || x >= m || y < 0 || y >= n || (matrix[x][y] <= matrix[t.first][t.second] && matrix[x][y] != -1))
+                    continue;
+                matrix[x][y] = matrix[t.first][t.second] + 1;
+                q.push({x, y});
+            }
         }
-
-        // if bottom edge
-        else if (i >= rows * (columns - 1))
-        {
-            // if bottom right corner
-            // if bottom left corner
-        }
-
-        // if left edge
-        else if (i % columns == 0)
-        {
-        }
-
-        // if right edge
-        else if ((i + 1) % columns == 0)
-        {
-        }
-
-        else
-        {
-        }
+        return matrix;
     }
 };

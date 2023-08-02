@@ -1,21 +1,4 @@
-class Solution
-{
-public:
-    TreeNode *invertTree(TreeNode *root)
-    {
-        Treenode *head = root;
 
-        if (root == NULL)
-            return NULL;
-        Treenode *temp = root->left;
-        root->left = root->right;
-        root->right = temp;
-
-        invertTree(root->left);
-        invertTree(root->right);
-        return head;
-    }
-}
 /*
 Given the root of a binary tree, invert the tree, and return its root.
      4
@@ -44,6 +27,40 @@ Example 3:
 
 Input: root = []
 Output: []
+class Solution
+{
+public:
+    TreeNode *invertTree(TreeNode *root)
+    {
+        TreeNode* head= root;
+        if(root=NULL){
+            return NULL;
+        }
+        TreeNode* tmp=root->left;
+        root->left=root->right;
+        root->right=tmp;
+           invertTree(root->left);
+        invertTree(root->right);
+        return head;
+    }};
+class Solution
+{
+public:
+    TreeNode *invertTree(TreeNode *root)
+    {
+        Treenode *head = root;
+
+        if (root == NULL)
+            return NULL;
+        Treenode *temp = root->left;
+        root->left = root->right;
+        root->right = temp;
+
+        invertTree(root->left);
+        invertTree(root->right);
+        return head;
+    }
+}
 */
 /**
  * Definition for a binary tree node.
