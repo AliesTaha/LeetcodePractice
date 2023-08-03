@@ -66,6 +66,35 @@ public:
     }
 };
  */
+class Solution
+{
+public:
+    void fill(vector<vector<int>> &image, int sr, int sc, int start, int newColor)
+    {
+        // Check if the current pixel is out of bounds or not matching the startColor
+        if (sr < 0 || sc < 0 || sr >= image.size() || sc >= image[0].size() || image[sr][sc] != start)
+        {
+            return;
+        }
+        image[sr][sc] = newColor;
+        int dx[4] = {-1, 1, 0, 0};
+        int dy[4] = {0, 0, -1, 1};
+        for (int i = 0; i < 4; i++)
+        {
+            fill(image, sr + dx[i], sc + dy[i], start, newColor);
+        }
+    }
+    vector<vector<int>> floodFill(vector<vector<int>> &image, int sr, int sc, int color)
+    {
+        int start = image[sr][sc];
+        if (start == color)
+        {
+            return image;
+        }
+        fill(image, sr, sc, start, color);
+        return image;
+    }
+};
 
 class Solution
 {

@@ -13,7 +13,34 @@ Example 2:
 Input: s = "rat", t = "car"
 Output: false
 */
-
+class Solution
+{
+public:
+    bool isAnagram(string s, string t)
+    {
+        char arr[26] = {0};
+        if (s.length() != t.length())
+        {
+            return false;
+        }
+        for (char c : s)
+        {
+            arr[c - 'a']++;
+        }
+        for (char c : t)
+        {
+            arr[c - 'a']--;
+        }
+        for (int i = 0; i < 26; i++)
+        {
+            if (arr[i] != 0)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+};
 class Solution
 {
 public:

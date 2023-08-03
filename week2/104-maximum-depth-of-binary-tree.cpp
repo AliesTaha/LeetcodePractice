@@ -1,3 +1,23 @@
+class Solution
+{
+public:
+    int maxDepth(TreeNode *root)
+    {
+        return maxer(root);
+    }
+
+private:
+    int maxer(TreeNode *root)
+    {
+        if (root == NULL)
+        {
+            return 0;
+        }
+        int l = maxer(root->left);
+        int r = maxer(root->right);
+        return (max(left, right) + 1);
+    }
+};
 /*104. Maximum Depth of Binary Tree
 Given the root of a binary tree, return its maximum depth.
 
@@ -41,7 +61,6 @@ public:
     }
 
 private:
-    int ans;
     int maxer(TreeNode *root)
     {
         if (root == NULL)

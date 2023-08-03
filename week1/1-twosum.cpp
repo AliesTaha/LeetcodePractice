@@ -1,31 +1,4 @@
-class Solution
-{
-public:
-    vector<int> twoSum(vector<int> &nums, int target)
-    {
-        // Make a hashmap, one of them will have the numbers, one will have the index
-        unordered_map<int, int> dic;
 
-        for (int i = 0; i < nums.size(); i++)
-        {
-            int num = nums[i];
-            int goal = target - num;
-
-            // iterator points to the dictionary key value pair. it->first and it->second is the value
-            auto it = dic.find(goal);
-
-            if (it != dic.end())
-            {
-                return {it->second, i};
-            }
-            else
-            {
-                dic[num] = i;
-            }
-        }
-        return {};
-    }
-};
 /*
 Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 
@@ -54,7 +27,34 @@ public:
 };
 ////////////////////
 */
+class Solution
+{
+public:
+    vector<int> twoSum(vector<int> &nums, int target)
+    {
+        // Make a hashmap, one of them will have the numbers, one will have the index
+        unordered_map<int, int> dic;
 
+        for (int i = 0; i < nums.size(); i++)
+        {
+            int num = nums[i];
+            int goal = target - num;
+
+            // iterator points to the dictionary key value pair. it->first and it->second is the value
+            auto it = dic.find(goal);
+
+            if (it != dic.end())
+            {
+                return {it->second, i};
+            }
+            else
+            {
+                dic[num] = i;
+            }
+        }
+        return {};
+    }
+};
 class Solution
 {
 public:

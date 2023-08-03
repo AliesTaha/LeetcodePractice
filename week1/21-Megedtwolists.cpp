@@ -1,3 +1,4 @@
+
 /*
 You are given the heads of two sorted linked lists list1 and list2.
 
@@ -36,37 +37,34 @@ public:
     }
 };
 */
-
 class Solution
 {
 public:
     ListNode *mergeTwoLists(ListNode *list1, ListNode *list2)
     {
-        ListNode *ptr1 = list1;
-        ListNode *ptr2 = list2;
+        ListNode *first = list1;
+        ListNode *second = list2;
+        ListNode *answer = new ListNode();
+        ListNode *head = answer;
 
-        ListNode *curr = new ListNode();
-        ListNode *head = curr;
-
-        while (ptr1 != nullptr && ptr2 != nullptr)
+        while (first != nullptr && second != nullptr)
         {
-            if (ptr1->val < ptr2->val)
+            if (first->val > second->val)
             {
-                curr->next = ptr1->val;
-                ptr1 = ptr1->next;
+                answer->next = first;
+                first = first->next;
             }
             else
             {
-                curr->next = ptr2->val;
-                ptr2 = ptr2->next;
+                answer->next = second;
+                second = second->next
             }
-            curr = curr->next;
+            answer = answer->next;
         }
-        curr->next = ptr1 == nullptr ? ptr2 : ptr1;
+        answer->next = first ? first : second;
         return head->next;
     }
 };
-
 class Solution
 {
 public:
