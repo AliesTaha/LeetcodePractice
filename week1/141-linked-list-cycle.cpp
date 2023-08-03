@@ -32,17 +32,7 @@ Explanation: There is no cycle in the linked list.
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        if (head==NULL){
-            return false;
-        }
-        while (head!=NULL){
-            if (head->val==INT_MAX){
-                return true;
-            }
-            head->val=INT_MAX;
-            head=head->next;
-        }
-        return false;
+
     }
 };
 */

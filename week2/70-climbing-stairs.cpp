@@ -43,18 +43,17 @@ class Solution
 public:
     int climbStairs(int n)
     {
-        if (n <= 2)
-        {
+        if (n <= 3)
             return n;
-        }
-        int last1 = 1;
-        int last2 = 2;
+        int left = 1;
+        int right = 2;
+        int sum;
+
         for (int i = 2; i < n; i++)
         {
-            int tmp = last2;
-            last2 = last1 + last2;
-            last1 = tmp;
+            sum = left + right;
+            left = right;
+            right = sum;
         }
-        return last2;
     }
 };

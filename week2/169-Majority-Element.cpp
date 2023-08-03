@@ -32,10 +32,31 @@ You may assume that the majority element always exists in the array.
 Example 1:
 Input: nums = [3,2,3]
 Output: 3
-Example 2:
 
+Example 2:
 Input: nums = [2,2,1,1,1,2,2]
 Output: 2
+
+class Solution
+{
+public:
+    int majorityElement(vector<int> &nums)
+    {
+        int maxi=INT_MIN;
+        int ans;
+        unordered_map<int, int> dic;
+
+        for (int i = 0; i < nums.size(); i++){
+            dic[nums[i]]++;
+        }
+
+        for (auto it= dic.begin(); it!=dic.end(); it++){
+            maxi=max(it->second, maxi);
+            if (maxi==(it->second))
+                ans=it->first;
+        }
+        return ans;
+    }};
 */
 
 class Solution
