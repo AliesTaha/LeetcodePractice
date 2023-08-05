@@ -31,12 +31,8 @@ public:
         vector<int> end_dummy = {newInterval[1], -1};
 
         // the smallest interval with end >= start_dummy[1]
-        auto it1 = lower_bound(intervals.begin(), intervals.end(),
-                               start_dummy,
-                               [](const vector<int> &a, const vector<int> &b)
-                               {
-                                   return a[1] < b[1];
-                               });
+        auto it1 = lower_bound(intervals.begin(), intervals.end(), start_dummy, [](const vector<int> &a, const vector<int> &b)
+                               { return a[1] < b[1]; });
 
         if (it1 == intervals.end())
         {
@@ -96,7 +92,7 @@ public:
         vector<vector<int>> ans;
         int i = 0, start = newInterval[0], end = newInterval[1], n = intervals.size();
 
-        while (i < n && intervals[i][1] < newInterval[0])
+        while (i < n && intervals[i][1] < start)
         {
             ans.push_back(intervals[i]);
             ++i;
