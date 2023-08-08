@@ -78,6 +78,6 @@ public:
                     --r;
             }
         }
-        return ans;
+        return results;
     }
 };
