@@ -79,6 +79,33 @@ class Solution
 public:
   Node *cloneGraph(Node *node)
   {
+    unordered_map<Node * node, Node * node> dic{node, new Node(node->val)};
+    queue{Node} q{node};
+
+    while (!q.empty())
+    {
+      Node *curr = q.front();
+      q.pop();
+      //for every node in the array of nodes 
+      for (auto neighbor : curr->neighbors)
+      {
+        if (!dic.count(neighbor))
+        {
+          dic[neighbor] = new Node(neighbor->val);
+          q.push(neighbor);
+        }
+        dic[curr]->neighbors.push_back(neighbor);
+      }
+    }
+    return dic[curr];
+  }
+};
+// Breadth first search
+class Solution
+{
+public:
+  Node *cloneGraph(Node *node)
+  {
     if (node == nullptr)
       return nullptr;
 
@@ -90,14 +117,14 @@ public:
       Node *theNode = q.front();
       q.pop();
 
-      for (auto v : theNode->neighbors)
+      for (auto neighbor : theNode->neighbors) // thenode->neighbors is an array of its 2 neighbors
       {
-        if (!map.count(v))
+        if (!map.count(neighbor))
         {
-          map[v] = new Node(v->val);
-          q.push(v);
+          map[neighbor] = new Node(neighbor->val);
+          q.push(neighbor);
         }
-        map[theNode]->neighbors.push_back(map[v]);
+        map[theNode]->neighbors.push_back(map[neighbor]);
       }
     }
 
