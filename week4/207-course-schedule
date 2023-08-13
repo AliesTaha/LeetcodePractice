@@ -1,0 +1,117 @@
+// This is a C++ solution to the "Course Schedule" problem using topological sort with BFS.
+// The problem requires determining if it's possible to finish all courses based on prerequisites.
+
+/** Initialize variables and data structures:
+    * numCourses = 4
+    * prerequisites = {{1, 0}, {2, 0}, {3, 1}, {3, 2}}
+
+IncomingEdgeCount:[0, 0, 0, 0]
+Edges:[  [__] , [__] , [__] , [__] ]
+
+    * incomingEdgeCount: [0, 1, 1, 2]
+    * edges: [ [1,2], [3], [3], [ ]]
+    */
+class Solution
+{
+public:
+    bool canFinish(int numCourses, vector<vector<int>> &prerequisites)
+    {
+        // Create a vector to track the incoming edge count for each course
+        vector<int> numOfPreReq(numCourses, 0);
+
+        // Create a vector to represent the edges between courses
+        vector<vector<int>> coursesAfterTakingIndexPrereq(numCourses);
+
+        // Populate the incoming edge count and edges based on prerequisites
+        for (vector<int> &pre : prerequisites)
+        {
+            // pre[1] points to pre[0] (pre[1] should be taken before pre[0])
+            numOfPreReq[pre[0]]++; // At index same as at value so at 3 is numofprereqs of course 3
+
+            coursesAfterTakingIndexPrereq[pre[1]].push_back(pre[0]);
+        }
+
+        // Create a queue to store courses with no incoming edges
+        queue<int> noIncomingEdges;
+
+        // Find courses with no incoming edges and add them to the queue
+        for (int i = 0; i < numCourses; i++)
+        {
+            // if course has no pre-requisites
+            if (numOfPreReq[i] == 0)
+            {
+                noIncomingEdges.push(i);
+            }
+        }
+
+        // Initialize the count of remaining edges
+        int remainingEdgeCount = prerequisites.size();
+
+        // Perform BFS-based topological sort
+        while (!noIncomingEdges.empty())
+        {
+            // Get a course with no incoming edges
+            int cur = noIncomingEdges.front();
+            noIncomingEdges.pop();
+
+            // Traverse its neighbors and update incoming edge count
+            for (int course : coursesAfterTakingIndexPrereq[cur])
+            {
+                remainingEdgeCount--;
+                if (--numOfPreReq[course] == 0)
+                {
+                    noIncomingEdges.push(course);
+                }
+            }
+        }
+
+        // If there are no remaining edges, it means there's no cycle and all courses can be finished
+        return remainingEdgeCount == 0;
+    }
+};
+
+/*
+You are given an array prerequisites where prerequisites[i] = [ai, bi] indicates that you must take course bi first if you want to take course ai.
+
+* Initialize variables and data structures:
+    * numCourses = 4
+    * prerequisites = {{1, 0}, {2, 0}, {3, 1}, {3, 2}}
+
+numOfPreReq:[0, 0, 0, 0]
+coursesAfterTakingIndexPrereq:[  [__] , [__] , [__] , [__] ]
+
+    * numOfPreReq: [0, 1, 1, 2]
+* coursesAfterTakingIndexPrereq: [ [1,2], [3], [3], [ ]]
+
+Queue noIncomingEdges = <0>. <- course with no pre-req index
+
+remainingEdgeCount = 4;
+
+    * Courses with no incoming edges: 0
+* 		Start BFS loop:
+*
+    * Iteration 1:
+        * cur = 0
+    * q= <>
+    *
+        * Process neighbors of 0: [1, 2]
+    *
+        * Decrease numOfPreReq for 1 and 2
+        * Since both 1 and 2 now have no incoming edges, add them to the queue
+        * remainingEdgeCount = 4 - 2 = 2
+        * noIncomingEdges: [1, 2]
+    * Iteration 2:
+        * cur = 1
+        * Process neighbors of 1: []
+        * No changes in numOfPreReq
+        * remainingEdgeCount = 1
+    * Iteration 3:
+        * cur = 2
+        * Process neighbors of 2: []
+        * No changes in numOfPreReq
+        * remainingEdgeCount = 0
+        *
+        * Return result: true (since remainingEdgeCount == 0)
+The output "Result: true" indicates that it is possible to finish all courses based on the given prerequisites for the test case numCourses = 4 and prerequisites = [[1,0], [2,0], [3,1], [3,2]].
+
+*/

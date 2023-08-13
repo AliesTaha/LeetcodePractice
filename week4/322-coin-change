@@ -1,0 +1,49 @@
+/*
+322. Coin Change
+You are given an integer array coins representing coins of different denominations
+and an integer amount representing a total amount of money.
+
+Return the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return -1.
+
+You may assume that you have an infinite number of each kind of coin.
+
+*/
+
+#include <vector>
+#include <algorithm>
+
+class Solution
+{
+public:
+    int coinChange(std::vector<int> &coins, int amount)
+    {
+        vector<int> minCoins(amount + 1, INT_MAX);
+        minCoins[0] = 0;
+
+        // i is coin, amount is 40 (answer should be 25+10+5 so 3)
+        for (int coin : coins)
+        {
+            // 5, then 10, then 25
+            // coin=5
+            for (int i = coin; i <= amount; i++)
+            {
+                // i=5
+                // amount = 25... 5, 6, 7, 8
+                if (minCoins[i - coin] != INT_MAX)
+                {
+                    // 5-5, 6-5...
+                    // mincoins[5]=min(mincoins[5], mincoins[0]+1)
+                    // mincoins[5]=  1
+                    // mincoins[10]=mincoins[5] 2 -> 1
+                    // mincoins[15]=mincoins[10] 3 -> 2
+                    // mincoins[20]= mincoins[15] 4
+                    // mincoins [25] = 5
+
+                    minCoins[i] = min(minCoins[i], minCoins[i - coin] + 1)
+                }
+            }
+        }
+
+        return minCoins[amount] == INT_MAX ? -1 : minCoins[amount];
+    }
+};
