@@ -47,3 +47,56 @@ public:
         return minCoins[amount] == INT_MAX ? -1 : minCoins[amount];
     }
 };
+
+class Solution
+{
+public:
+    vector<int> productExceptSelf(vector<int> &nums)
+    {
+        const int n = nums.size();
+        vector<int> ans(n, 0);
+        int product = 1;
+        int zeroCount = 0; // Count of zeros in the input array
+
+        for (int i = 0; i < n; i++)
+        {
+            if (nums[i] != 0)
+            {
+                product *= nums[i];
+            }
+            else
+            {
+                zeroCount++;
+            }
+        }
+
+        if (zeroCount > 1)
+        {
+            // If there are more than one zero, all elements in the result array should be 0
+            fill(ans.begin(), ans.end(), 0);
+        }
+        else if (zeroCount == 1)
+        {
+            // If there's exactly one zero, only the position of that zero should have the product,
+            // and all other positions should be 0
+            for (int i = 0; i < n; i++)
+            {
+                if (nums[i] == 0)
+                {
+                    ans[i] = product;
+                    break;
+                }
+            }
+        }
+        else
+        {
+            // No zeros, calculate the result normally
+            for (int i = 0; i < n; i++)
+            {
+                ans[i] = product / nums[i];
+            }
+        }
+
+        return ans;
+    }
+};
