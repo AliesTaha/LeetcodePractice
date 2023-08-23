@@ -62,6 +62,7 @@ public:
                 flowerbed[i] = 1;
             }
         }
+
         if (totalAvailableFlowers >= n)
             return true;
         return false;
